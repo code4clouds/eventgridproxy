@@ -2,7 +2,7 @@
 
 ## Description
 
-This function provides a proxy to another server.  The idea is to pass the messages received to another server.  I build this function to test the event grid webhook features given test to the webhook needs to be sent to a valid SSL endpoint.
+This Azure function is a quick sample to test EventGrid web-hooks.
 
 The function was written in VSCode.
 
@@ -14,19 +14,25 @@ The function was written in VSCode.
 
 ## Deployng
 
-1. To deploy the function use <CTRL+SHIFT+P> and select "Deploy to Function App..."
+1. To deploy the function use <CTRL+SHIFT+P> and select "Deploy to Function App...".  Make sure your function is anonymous
 
 ## Usage
 
 Point your browser to your endpoint or if you are in the command execute:
 
 ``` bash
-https://<your function app url>/api/HttpTriggerCSharp?name=somenamehere&url=http://somenonssllistener.com
+https://<your function app>.azurewebsites.net/api/eventgrid
 ```
 
-## Parameters
+# Logs
 
-| Parameter | Description |
-| --- | ---- |
-| name | The name of the user or service.  This is useful when sharing a single non-ssl listener server. |
-| url | The url of the listener server to forward the request | 
+Start the Azure Function streaming logs to observe if there are any errors. If sucessful deployment logs should have something like this:
+
+```
+2018-08-21T02:48:51.916 [Information] Executing 'eventgrid' (Reason='This function was programmatically called via the host APIs.', Id=a3f7e15f-...-ecff2a003901)
+
+2018-08-21T02:48:51.917 [Information] C# HTTP trigger function processed a request.
+
+2018-08-21T02:48:51.919 [Information] Executed 'eventgrid' (Succeeded, Id=a3f7e15f-...-ecff2a003901)
+```
+
